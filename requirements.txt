@@ -22,6 +22,8 @@ drf-spectacular==0.25.1
 
 drf-yasg==1.21.4
 
+gunicorn==20.1.0
+
 idna==3.4
 
 inflection==0.5.1
