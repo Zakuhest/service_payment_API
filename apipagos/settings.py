@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-(5tf9bii&^8%p=)l67av78$6@da)3#+(zg=%3!qf#3fhd=384t
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '',
+    'servicepaymentapi-production.up.railway.app',
 ]
 
 
