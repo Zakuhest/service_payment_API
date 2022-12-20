@@ -64,7 +64,6 @@ class PaymentUserViewSet(viewsets.ModelViewSet):
                             "pay_user_id": serializer.data[i]["id"],
                             "penalty_fee_amount": 15.00
                             })
-                print(lista)
                 expired_serial=ExpiredPaymentsSerializerV2(data=lista, many=True)
 
                 if expired_serial.is_valid():
@@ -109,7 +108,7 @@ class PaymentUserViewSet(viewsets.ModelViewSet):
 
         if serializer.is_valid():
             serializer.save()
-            
+
             if request.data["expiration_date"] < serializer.data["payment_date"]:
                 expired_serial=ExpiredPaymentsSerializerV2(data={
                     "pay_user_id": serializer.data["id"],
