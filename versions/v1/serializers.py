@@ -5,4 +5,4 @@ class PaymentUserSerializerV1(serializers.ModelSerializer):
     class Meta:
         model = Payment_user
         fields = '__all__'
-        read_only_fields = 'payment_date','expiration_date',
+        read_only_fields = 'payment_date',

@@ -8,7 +8,6 @@ from rest_framework import (
 from rest_framework.response import Response
 from .serializers import PaymentUserSerializerV1
 from .pagination import StandardResultsSetPagination
-# from rest_framework.throttling import UserRateThrottle
 
 class PaymentUserViewSet(viewsets.ModelViewSet):
 
@@ -16,7 +15,6 @@ class PaymentUserViewSet(viewsets.ModelViewSet):
     pagination_class = StandardResultsSetPagination
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     ordering_fields = ['id','service_id','user_id']
-    # ordering = ('-id')
     search_fields = ['user_id__username','service_id__name', 'payment_date']
     permission_classes = [permissions.IsAuthenticated]
     throttle_scope = 'payments'
@@ -24,12 +22,6 @@ class PaymentUserViewSet(viewsets.ModelViewSet):
     def get_serializer_class(self):
 
         return PaymentUserSerializerV1
-
-    # def list(self, request):
-    #     queryset = Payment_user.objects.all()
-    #     serializer = self.get_serializer(queryset, many=True)
-
-    #     return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
         queryset = Payment_user.objects.all()

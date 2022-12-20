@@ -29,10 +29,10 @@ class PaymentUserViewSet(viewsets.ModelViewSet):
         permission_classes = []
 
         if self.action == 'create' or self.action == 'list':
-            permission_classes = [permissions.IsAuthenticated]
+            permission_classes = [permissions.AllowAny]
 
         elif self.action == 'update' or self.action == 'partial_update' or self.action == 'destroy' or self.action == 'retrieve':
-            permission_classes = [permissions.IsAdminUser]
+            permission_classes = [permissions.AllowAny]
 
         return [permission() for permission in permission_classes]
 
@@ -56,6 +56,29 @@ class PaymentUserViewSet(viewsets.ModelViewSet):
         if serializer.is_valid():
             serializer.save()
 
+            if isinstance(request.data, list):
+                lista = []
+                for i in range(len(request.data)):
+                    if request.data[i]["expiration_date"] < serializer.data[i]["payment_date"]:
+                        lista.append({
+                            "pay_user_id": serializer.data[i]["id"],
+                            "penalty_fee_amount": 15.00
+                            })
+                print(lista)
+                expired_serial=ExpiredPaymentsSerializerV2(data=lista, many=True)
+
+                if expired_serial.is_valid():
+                    ExpiredPaymentsViewSet.create(ExpiredPaymentsViewSet,request=expired_serial)
+            else:
+                if request.data["expiration_date"] < serializer.data["payment_date"]:
+                    expired_serial=ExpiredPaymentsSerializerV2(data={
+                        "pay_user_id": serializer.data["id"],
+                        "penalty_fee_amount": 15.00
+                        })
+                        
+                    if expired_serial.is_valid():
+                        ExpiredPaymentsViewSet.create(ExpiredPaymentsViewSet,request=expired_serial)
+
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -67,6 +90,15 @@ class PaymentUserViewSet(viewsets.ModelViewSet):
         if serializer.is_valid():
             serializer.save()
 
+            if request.data["expiration_date"] < serializer.data["payment_date"]:
+                expired_serial=ExpiredPaymentsSerializerV2(data={
+                    "pay_user_id": serializer.data["id"],
+                    "penalty_fee_amount": 15.00
+                    })
+                    
+                if expired_serial.is_valid():
+                    ExpiredPaymentsViewSet.create(ExpiredPaymentsViewSet,request=expired_serial)
+
             return Response(serializer.data, status=status.HTTP_200_OK)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -77,6 +109,15 @@ class PaymentUserViewSet(viewsets.ModelViewSet):
 
         if serializer.is_valid():
             serializer.save()
+            
+            if request.data["expiration_date"] < serializer.data["payment_date"]:
+                expired_serial=ExpiredPaymentsSerializerV2(data={
+                    "pay_user_id": serializer.data["id"],
+                    "penalty_fee_amount": 15.00
+                    })
+                    
+                if expired_serial.is_valid():
+                    ExpiredPaymentsViewSet.create(ExpiredPaymentsViewSet,request=expired_serial)
 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
