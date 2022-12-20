@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-(5tf9bii&^8%p=)l67av78$6@da)3#+(zg=%3!qf#3fhd=384t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '',
+]
 
 
 # Application definition
@@ -81,8 +83,12 @@ WSGI_APPLICATION = 'apipagos.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'railway',
+        'PORT': '6268',
+        'HOST': 'containers-us-west-177.railway.app',
+        'USER': 'root',
+        'PASSWORD': 'U5eCOQiqGSjI8ZohrQWj',
     }
 }
 
