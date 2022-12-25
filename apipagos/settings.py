@@ -162,4 +162,4 @@ REST_FRAMEWORK = {
 
 AUTH_USER_MODEL = 'users.User'
 
-CSRF_TRUSTED_ORIGINS = ['https://https://servicepaymentapi-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://https://servicepaymentapi-production.up.railway.app', 'http://127.0.0.1:5500']
