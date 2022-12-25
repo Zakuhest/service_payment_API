@@ -166,3 +166,6 @@ AUTH_USER_MODEL = 'users.User'
 CSRF_TRUSTED_ORIGINS = ['https://https://servicepaymentapi-production.up.railway.app']
 
 CORS_ALLOW_ALL_ORIGINS = True
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost',
+)
