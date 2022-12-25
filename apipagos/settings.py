@@ -28,7 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'servicepaymentapi-production.up.railway.app',
-    '127.0.0.1:5500'
 ]
 
 
@@ -162,4 +161,4 @@ REST_FRAMEWORK = {
 
 AUTH_USER_MODEL = 'users.User'
 
-CSRF_TRUSTED_ORIGINS = ['https://https://servicepaymentapi-production.up.railway.app', 'http://127.0.0.1:5500']
+CSRF_TRUSTED_ORIGINS = ['https://https://servicepaymentapi-production.up.railway.app']
