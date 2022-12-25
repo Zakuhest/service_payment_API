@@ -155,8 +155,8 @@ REST_FRAMEWORK = {
     'DEFAULT_THROTTLE_RATES': {
         'anon': '100/day',
         'user': '1000/day',
-        'payments': '1000/day',
-        'others': '2000/day',
+        'payments': '1000000/day',
+        'others': '200000/day',
         
     }
 }
