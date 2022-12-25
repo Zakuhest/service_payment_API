@@ -28,6 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'servicepaymentapi-production.up.railway.app',
+    '127.0.0.1:5500'
 ]
 
 
