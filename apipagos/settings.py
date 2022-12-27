@@ -153,10 +153,10 @@ REST_FRAMEWORK = {
         'rest_framework.throttling.ScopedRateThrottle',
     ],
     'DEFAULT_THROTTLE_RATES': {
-        'anon': '10000000/day',
-        'user': '10000000/day',
-        'payments': '10000000/day',
-        'others': '20000000/day',
+        'anon': '100/day',
+        'user': '1000/day',
+        'payments': '1000/day',
+        'others': '2000/day',
         
     }
 }
